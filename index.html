@@ -7,42 +7,41 @@
     <style>
         body {
             margin: 0;
-            padding: 0;
+            padding: 8px;
             font-family: Arial, sans-serif;
             background: #f4f5f7;
         }
 
         .container {
-            max-width: 420px;
-            margin: 40px auto;
+            max-width: 100%;
             background: #ffffff;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
         }
 
         h1 {
-            font-size: 18px;
-            margin-bottom: 20px;
+            font-size: 15px;
+            margin: 4px 0 10px 0;
             color: #333;
-            text-align: center;
+            text-align: left;
         }
 
         label {
             display: block;
-            font-size: 13px;
+            font-size: 12px;
             color: #555;
-            margin-top: 14px;
-            margin-bottom: 6px;
+            margin-top: 8px;
+            margin-bottom: 4px;
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 8px;
+            border-radius: 6px;
             border: 1px solid #ccc;
             background: #f0f0f0;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         input:focus {
@@ -54,36 +53,36 @@
         .info {
             font-size: 11px;
             color: #777;
-            margin-top: 4px;
+            margin-top: 2px;
         }
 
         .fixed {
             background: #e9ecef;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 13px;
             color: #333;
         }
 
         .resultado-box {
-            margin-top: 24px;
-            padding: 16px;
+            margin-top: 12px;
+            padding: 10px;
             background: #f8f9fb;
-            border-radius: 10px;
-            text-align: center;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        .resultado-box small {
+            font-size: 11px;
+            color: #777;
         }
 
         .resultado-box span {
             display: block;
-            font-size: 24px;
+            font-size: 18px;
             font-weight: bold;
             color: #2c3e50;
-            margin-top: 8px;
-        }
-
-        .resultado-box small {
-            font-size: 12px;
-            color: #777;
+            margin-top: 2px;
         }
     </style>
 </head>
@@ -95,12 +94,12 @@
     <label>Quantidade de peças</label>
     <input type="number" id="b2" placeholder="Ex: 200">
 
-    <label>Largura do tecido (metros)</label>
+    <label>Largura do tecido (m)</label>
     <input type="number" step="0.01" id="b3" placeholder="Ex: 1.35">
 
     <label>Largura do viés (cm)</label>
     <input type="number" id="b4" placeholder="Ex: 3">
-    <div class="info">Preencha em centímetros (3 = 3cm)</div>
+    <div class="info">Informe em centímetros (3 = 3cm)</div>
 
     <label>Remoção</label>
     <div class="fixed">20% (valor fixo)</div>
@@ -126,7 +125,8 @@
 
         const larguraVies = larguraViesCm / 100;
 
-        const resultado = qtd / ((larguraTecido - (larguraTecido * REMOCAO_FIXA)) / larguraVies);
+        const resultado =
+            qtd / ((larguraTecido - (larguraTecido * REMOCAO_FIXA)) / larguraVies);
 
         document.getElementById("resultado").innerText =
             resultado.toFixed(6);
