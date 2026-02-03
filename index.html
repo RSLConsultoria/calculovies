@@ -2,46 +2,30 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de Viés</title>
 
     <style>
         body {
             margin: 0;
-            padding: 8px;
+            padding: 6px;
             font-family: Arial, sans-serif;
-            background: #f4f5f7;
-        }
-
-        .container {
-            max-width: 100%;
             background: #ffffff;
-            padding: 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        }
-
-        h1 {
-            font-size: 15px;
-            margin: 4px 0 10px 0;
-            color: #333;
-            text-align: left;
         }
 
         label {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             color: #555;
-            margin-top: 8px;
-            margin-bottom: 4px;
+            margin-top: 6px;
+            margin-bottom: 2px;
         }
 
         input {
             width: 100%;
-            padding: 8px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            background: #f0f0f0;
+            padding: 6px;
             font-size: 13px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: #f2f2f2;
         }
 
         input:focus {
@@ -51,45 +35,36 @@
         }
 
         .info {
-            font-size: 11px;
+            font-size: 10px;
             color: #777;
-            margin-top: 2px;
+            margin-top: 1px;
         }
 
         .fixed {
-            background: #e9ecef;
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 13px;
+            padding: 6px;
+            font-size: 12px;
+            border-radius: 5px;
+            background: #ededed;
             color: #333;
         }
 
-        .resultado-box {
-            margin-top: 12px;
-            padding: 10px;
-            background: #f8f9fb;
-            border-radius: 8px;
-            text-align: left;
+        .resultado {
+            margin-top: 8px;
+            padding: 8px;
+            background: #f7f7f7;
+            border-radius: 6px;
+            font-size: 13px;
         }
 
-        .resultado-box small {
-            font-size: 11px;
-            color: #777;
-        }
-
-        .resultado-box span {
-            display: block;
-            font-size: 18px;
+        .resultado span {
             font-weight: bold;
-            color: #2c3e50;
+            font-size: 16px;
+            display: block;
             margin-top: 2px;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h1>Calculadora de Viés</h1>
 
     <label>Quantidade de peças</label>
     <input type="number" id="b2" placeholder="Ex: 200">
@@ -102,31 +77,30 @@
     <div class="info">Informe em centímetros (3 = 3cm)</div>
 
     <label>Remoção</label>
-    <div class="fixed">20% (valor fixo)</div>
+    <div class="fixed">20% (fixo)</div>
 
-    <div class="resultado-box">
-        <small>Resultado</small>
+    <div class="resultado">
+        Resultado
         <span id="resultado">—</span>
     </div>
-</div>
 
 <script>
     const REMOCAO_FIXA = 0.20;
 
     function calcular() {
         const qtd = Number(document.getElementById("b2").value);
-        const larguraTecido = Number(document.getElementById("b3").value);
-        const larguraViesCm = Number(document.getElementById("b4").value);
+        const tecido = Number(document.getElementById("b3").value);
+        const viesCm = Number(document.getElementById("b4").value);
 
-        if (!qtd || !larguraTecido || !larguraViesCm) {
+        if (!qtd || !tecido || !viesCm) {
             document.getElementById("resultado").innerText = "—";
             return;
         }
 
-        const larguraVies = larguraViesCm / 100;
+        const vies = viesCm / 100;
 
         const resultado =
-            qtd / ((larguraTecido - (larguraTecido * REMOCAO_FIXA)) / larguraVies);
+            qtd / ((tecido - (tecido * REMOCAO_FIXA)) / vies);
 
         document.getElementById("resultado").innerText =
             resultado.toFixed(6);
