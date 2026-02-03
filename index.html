@@ -1,95 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <style>
-        body {
-            margin: 0;
-            padding: 6px;
-            font-family: Arial, sans-serif;
-            background: #ffffff;
-        }
+<style>
+    body {
+        margin: 0;
+        padding: 6px;
+        font-family: Arial, sans-serif;
+        background: #ffffff;
+    }
 
-        .wrap {
-            max-width: 250px;
-        }
+    .wrap {
+        max-width: 260px;
+    }
 
-        label {
-            display: block;
-            font-size: 11px;
-            color: #555;
-            margin-top: 6px;
-            margin-bottom: 2px;
-        }
+    .linha {
+        display: flex;
+        gap: 6px;
+    }
 
-        input {
-            width: 5ch;               /* ≈ 5 caracteres */
-            max-width: 100%;
-            padding: 6px;
-            font-size: 13px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background: #f2f2f2;
-        }
+    .campo {
+        display: flex;
+        flex-direction: column;
+        font-size: 10px;
+        color: #555;
+    }
 
-        input:focus {
-            outline: none;
-            border-color: #4a90e2;
-            background: #ffffff;
-        }
+    .campo input {
+        width: 5ch;
+        padding: 6px;
+        font-size: 13px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background: #f2f2f2;
+    }
 
-        .info {
-            font-size: 10px;
-            color: #777;
-            margin-top: 1px;
-        }
+    .campo input:focus {
+        outline: none;
+        border-color: #4a90e2;
+        background: #ffffff;
+    }
 
-        .fixed {
-            width: fit-content;
-            padding: 6px;
-            font-size: 12px;
-            border-radius: 5px;
-            background: #ededed;
-            color: #333;
-        }
+    .resultado {
+        margin-top: 6px;
+        padding: 8px;
+        border-radius: 6px;
+        background: #f7f7f7;
+        font-size: 12px;
+    }
 
-        .resultado {
-            margin-top: 8px;
-            padding: 6px;
-            background: #f7f7f7;
-            border-radius: 6px;
-            font-size: 12px;
-        }
+    .resultado span {
+        font-size: 16px;
+        font-weight: bold;
+        display: block;
+        margin-top: 2px;
+    }
 
-        .resultado span {
-            font-weight: bold;
-            font-size: 14px;
-            display: block;
-            margin-top: 2px;
-        }
-    </style>
+    .fixed {
+        margin-top: 4px;
+        font-size: 10px;
+        color: #777;
+    }
+</style>
 </head>
+
 <body>
 
 <div class="wrap">
-    <label>Qtd peças</label>
-    <input type="number" id="b2" placeholder="200">
 
-    <label>Largura tecido (m)</label>
-    <input type="number" step="0.01" id="b3" placeholder="1.35">
+    <div class="linha">
+        <div class="campo">
+            qtd peças
+            <input type="number" id="b2" placeholder="200">
+        </div>
 
-    <label>Viés (cm)</label>
-    <input type="number" id="b4" placeholder="3">
-    <div class="info">3 = 3cm</div>
+        <div class="campo">
+            largura tecido (m)
+            <input type="number" step="0.01" id="b3" placeholder="1.35">
+        </div>
 
-    <label>Remoção</label>
-    <div class="fixed">20% fixo</div>
+        <div class="campo">
+            viés (cm)
+            <input type="number" id="b4" placeholder="3">
+        </div>
+    </div>
+
+    <div class="fixed">remoção: 20% (fixo)</div>
 
     <div class="resultado">
-        Resultado
+        resultado
         <span id="resultado">—</span>
     </div>
+
 </div>
 
 <script>
