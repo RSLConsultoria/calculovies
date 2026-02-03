@@ -2,38 +2,78 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Cálculo</title>
+    <title>Calculadora Viés</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        label {
+            display: block;
+            margin-top: 12px;
+        }
+        input {
+            padding: 6px;
+            width: 200px;
+        }
+        .info {
+            font-size: 12px;
+            color: #555;
+        }
+        .resultado {
+            margin-top: 16px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
     <label>Qtd peças</label>
-    <input type="number" id="b2" value=""><br><br>
+    <input type="number" id="b2" value="200">
 
-    <label>Largura do tecido</label>
-    <input type="number" id="b3" step="0.01" value=""><br><br>
+    <label>Largura do tecido (m)</label>
+    <input type="number" id="b3" step="0.01" value="1.35">
 
-    <label>Largura viés</label>
-    <input type="number" id="b4" step="0.01" value=""><br><br>
+    <label>
+        Largura do viés (cm)
+        <div class="info">Informe em centímetros (ex: 3 = 3cm)</div>
+    </label>
+    <input type="number" id="b4" value="3">
 
-    <label>Remoção (%)</label>
-    <input type="number" id="b5" step="0.01" value="0.20"><br><br>
+    <label>Remoção</label>
+    <div class="info">Valor fixo: <strong>20%</strong></div>
 
-    <button onclick="calcular()">Calcular</button>
-
-    <p>Resultado: <strong id="resultado">0</strong></p>
+    <div class="resultado">
+        Resultado: <span id="resultado">0</span>
+    </div>
 
     <script>
-        function calcular() {
-            const B2 = Number(document.getElementById("b2").value);
-            const B3 = Number(document.getElementById("b3").value);
-            const B4 = Number(document.getElementById("b4").value);
-            const B5 = Number(document.getElementById("b5").value);
+        const REMOCAO_FIXA = 0.20;
 
-            const resultado = B2 / ((B3 - (B3 * B5)) / B4);
+        function calcular() {
+            const B2 = Number(document.getElementById("b2").value || 0);
+            const B3 = Number(document.getElementById("b3").value || 0);
+            const larguraViesCm = Number(document.getElementById("b4").value || 0);
+
+            // converte cm → metros
+            const B4 = larguraViesCm / 100;
+
+            if (B3 === 0 || B4 === 0) {
+                document.getElementById("resultado").innerText = "-";
+                return;
+            }
+
+            const resultado = B2 / ((B3 - (B3 * REMOCAO_FIXA)) / B4);
 
             document.getElementById("resultado").innerText =
                 resultado.toFixed(6);
         }
+
+        // calcula automaticamente ao digitar
+        document.querySelectorAll("input").forEach(input => {
+            input.addEventListener("input", calcular);
+        });
+
+        calcular();
     </script>
 
 </body>
