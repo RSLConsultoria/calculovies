@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cálculo</title>
+</head>
+<body>
+
+    <label>Qtd peças</label>
+    <input type="number" id="b2" value="200"><br><br>
+
+    <label>Largura do tecido</label>
+    <input type="number" id="b3" step="0.01" value="1.35"><br><br>
+
+    <label>Largura viés</label>
+    <input type="number" id="b4" step="0.01" value="0.03"><br><br>
+
+    <label>Remoção (%)</label>
+    <input type="number" id="b5" step="0.01" value="0.20"><br><br>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <p>Resultado: <strong id="resultado">0</strong></p>
+
+    <script>
+        function calcular() {
+            const B2 = Number(document.getElementById("b2").value);
+            const B3 = Number(document.getElementById("b3").value);
+            const B4 = Number(document.getElementById("b4").value);
+            const B5 = Number(document.getElementById("b5").value);
+
+            const resultado = B2 / ((B3 - (B3 * B5)) / B4);
+
+            document.getElementById("resultado").innerText =
+                resultado.toFixed(6);
+        }
+    </script>
+
+</body>
+</html>
